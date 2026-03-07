@@ -1,71 +1,41 @@
 // src/App.jsx
-// ──────────────────────────────────────────────
-// CareBridge — Main App with Routing
-// ──────────────────────────────────────────────
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
 import { AuthProvider, useAuth } from "./context/AuthContext";
-
 import Upload from "./pages/Upload";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Timeline from "./pages/Timeline";
 import CheckIn from "./pages/CheckIn";
 import CheatSheet from "./pages/CheatSheet";
+import ChatPage from "./pages/ChatPage";
 
-// ── Protected Route — redirects to /auth if not logged in ──
 function ProtectedRoute({ children }) {
-
   const { user } = useAuth();
-
   return user ? children : <Navigate to="/auth" replace />;
-
 }
 
 function AppRoutes() {
-
   const { user } = useAuth();
-
   return (
     <Routes>
-      <Route path="/auth"
-
-        element={user ? <Navigate to="/upload" replace /> : <Auth />}
-
-      />
-      <Route path="/upload" element={
-        <ProtectedRoute><Upload /></ProtectedRoute>
-
-      } />
-      <Route path="/dashboard" element={
-        <ProtectedRoute><Dashboard /></ProtectedRoute>
-      } />
-      <Route path="/timeline" element={
-        <ProtectedRoute><Timeline /></ProtectedRoute>
-      } />
-      <Route path="/checkin" element={
-        <ProtectedRoute><CheckIn /></ProtectedRoute>
-      } />
-      <Route path="/cheatsheet" element={
-        <ProtectedRoute><CheatSheet /></ProtectedRoute>
-      } />
+      <Route path="/auth" element={user ? <Navigate to="/upload" replace /> : <Auth />} />
+      <Route path="/upload" element={<ProtectedRoute><Upload /></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
+      <Route path="/checkin" element={<ProtectedRoute><CheckIn /></ProtectedRoute>} />
+      <Route path="/cheatsheet" element={<ProtectedRoute><CheatSheet /></ProtectedRoute>} />
+      <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
       <Route path="*" element={<Navigate to="/auth" replace />} />
     </Routes>
-
   );
-
 }
 
 export default function App() {
-
   return (
     <AuthProvider>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
     </AuthProvider>
-
   );
-
 }
