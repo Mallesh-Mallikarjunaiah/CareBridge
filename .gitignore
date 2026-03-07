@@ -1,0 +1,13 @@
+.env
+.env.local
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+chroma_db/
+audio/
+.DS_Store
+.vscode/
+*.log
+EOF
