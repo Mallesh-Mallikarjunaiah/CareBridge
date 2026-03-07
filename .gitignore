@@ -1,0 +1,44 @@
+# ──────────── Python ────────────
+backend/venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.Python
+*.whl
+
+# ──────────── Environment Variables ────────────
+.env
+backend/.env
+
+# ──────────── Firebase / Google Credentials ────────────
+*-service-account.json
+*-credentials.json
+firebase-service-account.json
+google-calendar-credentials.json
+
+# ──────────── Node / Frontend ────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# ──────────── IDE / Editor ────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ──────────── OS Files ────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ──────────── Logs ────────────
+*.log
+npm-debug.log*
+
+# ──────────── Misc ────────────
+*.bak
+*.tmp
