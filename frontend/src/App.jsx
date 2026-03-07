@@ -1,3 +1,8 @@
+// src/App.jsx
+// ──────────────────────────────────────────────
+// CareBridge — Main App with Routing
+// ──────────────────────────────────────────────
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { AuthProvider, useAuth } from "./context/AuthContext";
@@ -14,6 +19,13 @@ import CheckIn from "./pages/CheckIn";
 
 import CheatSheet from "./pages/CheatSheet";
 
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+import Timeline from "./pages/Timeline";
+import CheckIn from "./pages/CheckIn";
+import CheatSheet from "./pages/CheatSheet";
+
+// ── Protected Route — redirects to /auth if not logged in ──
 function ProtectedRoute({ children }) {
 
   const { user } = useAuth();
@@ -39,18 +51,16 @@ function AppRoutes() {
       } />
       <Route path="/dashboard" element={
         <ProtectedRoute><Dashboard /></ProtectedRoute>
-
       } />
       <Route path="/timeline" element={
         <ProtectedRoute><Timeline /></ProtectedRoute>
-
       } />
       <Route path="/checkin" element={
         <ProtectedRoute><CheckIn /></ProtectedRoute>
-
       } />
       <Route path="/cheatsheet" element={
         <ProtectedRoute><CheatSheet /></ProtectedRoute>
+      } />
 
       } />
       <Route path="*" element={<Navigate to="/auth" replace />} />

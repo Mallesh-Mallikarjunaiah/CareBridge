@@ -14,6 +14,7 @@ backend/.env
 # ──────────── Firebase / Google Credentials ────────────
 *-service-account.json
 *-credentials.json
+*-adminsdk-*.json
 firebase-service-account.json
 google-calendar-credentials.json
 
@@ -27,18 +28,17 @@ frontend/.env
 .idea/
 *.swp
 *.swo
-*.sublime-project
-*.sublime-workspace
 
 # ──────────── OS Files ────────────
 .DS_Store
 Thumbs.db
-Desktop.ini
 
 # ──────────── Logs ────────────
 *.log
 npm-debug.log*
 
 # ──────────── Misc ────────────
+chroma_db/
+audio/
 *.bak
 *.tmp
