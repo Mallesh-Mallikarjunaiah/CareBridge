@@ -51,7 +51,7 @@ export default function Dashboard() {
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-800">
-            Welcome back, {user?.displayName?.split(" ")[0] || "there"} 👋
+            Welcome back, {user?.full_name?.split(" ")[0] || "there"} 👋
           </h1>
           <p className="text-gray-500 text-sm mt-1">
             Here is your recovery plan overview.
