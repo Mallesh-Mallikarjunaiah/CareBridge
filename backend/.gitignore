@@ -1,0 +1,41 @@
+# ── Python ───────────────────────────────────────
+# Virtual environment — never push this (too large)
+venv/
+.venv/
+env/
+
+# Python cache files — auto generated
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache
+
+# Distribution / build
+dist/
+build/
+*.egg-info/
+
+# ── Secrets — NEVER push these ───────────────────
+# Environment variables — contains API keys
+.env
+
+# Firebase private key — contains admin credentials
+firebase-credentials.json
+*.json
+
+# ── IDE ───────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# ── Logs ──────────────────────────────────────────
+*.log
+logs/
+
+# ── Testing ───────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
