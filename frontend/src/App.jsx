@@ -7,18 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
-import Auth from "./pages/Auth";
-
 import Upload from "./pages/Upload";
-
-import Dashboard from "./pages/Dashboard";
-
-import Timeline from "./pages/Timeline";
-
-import CheckIn from "./pages/CheckIn";
-
-import CheatSheet from "./pages/CheatSheet";
-
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Timeline from "./pages/Timeline";
@@ -60,8 +49,6 @@ function AppRoutes() {
       } />
       <Route path="/cheatsheet" element={
         <ProtectedRoute><CheatSheet /></ProtectedRoute>
-      } />
-
       } />
       <Route path="*" element={<Navigate to="/auth" replace />} />
     </Routes>
