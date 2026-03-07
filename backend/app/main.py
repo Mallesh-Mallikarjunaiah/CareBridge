@@ -1,8 +1,19 @@
+# backend/app/main.py
+# ──────────────────────────────────────────────
+# CareBridge — FastAPI Entry Point
+# ──────────────────────────────────────────────
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
+
+# ══════════════════════════════════════════════
+#  CREATE THE FASTAPI APP
+# ══════════════════════════════════════════════
 
 app = FastAPI(
     title="CareBridge API",
@@ -11,6 +22,10 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
+
+# ══════════════════════════════════════════════
+#  CORS MIDDLEWARE
+# ══════════════════════════════════════════════
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,14 +41,42 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Auth router (teammates)
+# ══════════════════════════════════════════════
+#  SERVE STATIC FILES (Audio)
+# ══════════════════════════════════════════════
+
+# Create audio directory if it doesn't exist
+os.makedirs("audio", exist_ok=True)
+app.mount("/audio", StaticFiles(directory="audio"), name="audio")
+
+# ══════════════════════════════════════════════
+#  REGISTER ROUTERS
+# ══════════════════════════════════════════════
+
+# Auth router (our JWT auth system)
 from app.routers import auth
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 
-# Your routers
-from app.routers import documents, chat
-app.include_router(documents.router, prefix="/api", tags=["Documents"])
-app.include_router(chat.router, prefix="/api", tags=["Chat"])
+# Document & Chat routers (teammate's work)
+# Wrapped in try/except so the app doesn't crash
+# if teammate's dependencies aren't installed yet
+try:
+    from app.routers import documents
+    app.include_router(documents.router, prefix="/api", tags=["Documents"])
+    print("✅ Documents router loaded")
+except ImportError as e:
+    print(f"⚠️  Documents router skipped (missing dependency: {e})")
+
+try:
+    from app.routers import chat
+    app.include_router(chat.router, prefix="/api", tags=["Chat"])
+    print("✅ Chat router loaded")
+except ImportError as e:
+    print(f"⚠️  Chat router skipped (missing dependency: {e})")
+
+# ══════════════════════════════════════════════
+#  ROOT ENDPOINTS
+# ══════════════════════════════════════════════
 
 @app.get("/", tags=["Health"])
 def root():
