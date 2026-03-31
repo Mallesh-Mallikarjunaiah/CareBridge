@@ -9,6 +9,7 @@
 [![AI Powered](https://img.shields.io/badge/AI-Gemini%202.0-purple.svg)]()
 
 ---
+![Alt text](path/to/image.png)
 
 ## 📌 Problem Statement
 
