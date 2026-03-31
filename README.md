@@ -9,7 +9,7 @@
 [![AI Powered](https://img.shields.io/badge/AI-Gemini%202.0-purple.svg)]()
 
 ---
-![Alt text](CareBridge_block_diagram.png)
+![CareBridge Block Diagram](CareBridge_block_diagram.png)
 
 ## 📌 Problem Statement
 
